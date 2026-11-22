@@ -43,7 +43,6 @@ section{display:grid;gap:16px}
 .c-nice{border:1px solid var(--line);color:var(--muted)}
 .note{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:6px}
 .note ul,.rules{margin:0;padding-right:20px;display:grid;gap:4px}
-/* shot timeline */
 .shots{display:grid;gap:0}
 .shot{display:grid;grid-template-columns:74px 1fr;gap:14px}
 .time{font-family:var(--font-mono);font-size:.82rem;color:var(--muted);text-align:left;direction:ltr;padding-top:16px;border-left:2px solid var(--line);padding-left:10px;position:relative}
@@ -55,7 +54,7 @@ section{display:grid;gap:16px}
 .row span:first-child{color:var(--muted);font-size:.86rem;padding-top:2px}
 .ontext{font-weight:800;color:var(--fg)}
 .refs{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);direction:ltr;text-align:right}
-/* photo list */
+.conf{font-family:var(--font-mono);font-size:.8rem;color:var(--gold);font-weight:500}
 .group{display:grid;gap:10px}
 .photo{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
 .pid{font-family:var(--font-mono);font-weight:500;color:var(--pine);font-size:.95rem;padding-top:2px}
@@ -65,6 +64,11 @@ section{display:grid;gap:16px}
 .count{font-size:.82rem;color:var(--gold);font-weight:700}
 .tally{display:flex;flex-wrap:wrap;gap:10px 24px;font-size:.95rem}
 .tally b{font-family:var(--font-mono);font-weight:500;color:var(--pine)}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:right;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:.86rem}
+td.n{font-family:var(--font-mono);color:var(--pine);white-space:nowrap;font-variant-numeric:tabular-nums}
 @media (max-width:480px){.shot{grid-template-columns:58px 1fr;gap:10px}.row{grid-template-columns:1fr;gap:0}h1{font-size:1.55rem}}
 </style>
 
@@ -72,17 +76,17 @@ section{display:grid;gap:16px}
 
 <header>
   <h1>ريل الشركات: «توقّع مين بينزل أول»</h1>
-  <p class="lead">ستوري بورد بأسلوب «اليد على الشاشة»، وقائمة الصور المطلوبة لتوليد اللقطات بالذكاء الاصطناعي.</p>
-  <div class="meta"><span>المدة <b>17.5 ث</b></span><span>المقاس <b>1080×1920 · 30fps</b></span><span>الحساب <b>@the_forest_park</b></span><span>نسخة <b>v1 · 22/11/2026</b></span></div>
+  <p class="lead">ريل سينمائي بملء الشاشة، مولّد من صور البارك الحقيقية، وبهوك قوي بأول ثانيتين.</p>
+  <div class="meta"><span>المدة <b>17.5 ث</b></span><span>المقاس <b>1080×1920 · 30fps</b></span><span>الحساب <b>@the_forest_park</b></span><span>نسخة <b>v2 · 22/11/2026</b></span></div>
 </header>
 
 <section>
-  <h2>الفكرة باختصار</h2>
-  <p>نفس أسلوب الفيديو المرجعي: جوال بيصوّر شاشة كمبيوتر بالمكتب، وكل ما اليد بتمرّ قدام الشاشة بيتقلب المشهد. اللي بيظهر على الشاشة خليط من لقطات مولّدة من صور البارك، ولقطات حقيقية من فيديوهات الشركات. إعادة تصوير الشاشة بالجوال بتوحّد الشكل وبتخبّي أي عيب صغير بالتوليد.</p>
+  <h2>الفكرة</h2>
+  <p>بنفتح مباشرة على أخطر لحظة: ثلاث أزواج أرجل على حافة برج ارتفاعه 60 متر، والغابة بعيدة تحت. بنسأل المشاهد يتوقّع مين رح ينزل أول، وبنأجّل الجواب للثانية 11. كل اللقطات سينمائية بملء الشاشة وقت الغروب، ومولّدة من صور البارك الحقيقية، فالبرج والغابة بيطلعوا متل الواقع بالضبط.</p>
   <div class="legend">
-    <span class="chip c-film">تصوير بالجوال</span>
     <span class="chip c-ai">مولّد من صور</span>
-    <span class="chip c-real">لقطة حقيقية موجودة</span>
+    <span class="chip c-film">يُفضّل تصويره حقيقياً</span>
+    <span class="chip c-real">لقطة حقيقية بعد التلوين</span>
   </div>
 </section>
 
@@ -91,101 +95,115 @@ section{display:grid;gap:16px}
   <div class="shots">
 
     <div class="shot"><div class="time">0.0–2.0</div><div class="card">
-      <div class="top"><h3>١. الشاشة والتوقّع</h3><span class="chip c-film">تصوير بالجوال</span><span class="chip c-ai">بورتريهات مولّدة</span></div>
-      <div class="row"><span>الصورة</span><span>لقطة POV لشاشة مكتب، والكيبورد مبيّن تحت. على الشاشة 3 بطاقات بورتريه: المدير / أبو المحاسبة / الموظف الجديد (أول أسبوع).</span></div>
-      <div class="row"><span>النص</span><span class="ontext">60 متر. 3 موظفين. واحد بس بينزل أول… توقّع 👇</span></div>
-      <div class="row"><span>الصوت</span><span>أجواء مكتب، ثم نبضة توتر.</span></div>
-      <div class="refs">needs: P20–P22 (or generated characters)</div>
+      <div class="top"><h3>١. الهوك: الأرجل على الحافة</h3><span class="chip c-ai">مولّد من صور</span><span class="conf">90%</span></div>
+      <div class="row"><span>الصورة</span><span>لقطة POV لتحت: ثلاث أزواج بوطات على آخر خشبة بالمنصة، والصنوبر صغير جداً تحت. حجرة صغيرة بتوقع لتحت.</span></div>
+      <div class="row"><span>النص</span><span class="ontext">60 متر. 3 موظفين.<br>واحد بس بينزل أول… توقّع 👇</span></div>
+      <div class="row"><span>الصوت</span><span>ريح قوية، ونبضة قلب.</span></div>
+      <div class="refs">from: P04, P06, P07</div>
     </div></div>
 
-    <div class="shot"><div class="time">2.0–2.5</div><div class="card">
-      <div class="top"><h3>٢. اليد بتقلب المشهد</h3><span class="chip c-film">تصوير بالجوال</span></div>
-      <div class="row"><span>الصورة</span><span>اليد بتمسح الشاشة من اليمين لليسار. القطع بيصير لحظة ما تغطيها.</span></div>
-      <div class="row"><span>الصوت</span><span>Whoosh قوي.</span></div>
+    <div class="shot"><div class="time">2.0–3.5</div><div class="card">
+      <div class="top"><h3>٢. الدرون بيكشف المكان</h3><span class="chip c-ai">مولّد من صور</span><span class="conf">95%</span></div>
+      <div class="row"><span>الصورة</span><span>درون بيلف حول قمة البرج وقت الغروب، وعلى الحافة 3 أشخاص صغار. الغابة كلها مبيّنة.</span></div>
+      <div class="row"><span>الصوت</span><span>Whoosh، وموسيقى متوترة بتبدأ.</span></div>
+      <div class="refs">from: P01, P02, P11, P15</div>
     </div></div>
 
-    <div class="shot"><div class="time">2.5–3.5</div><div class="card">
-      <div class="top"><h3>٣. الوصول لقمة البرج</h3><span class="chip c-ai">مولّد من صور</span></div>
-      <div class="row"><span>الصورة</span><span>حركة درون بطيئة لقدّام باتجاه قمة البرج وقت الغروب، والصنوبر تحت.</span></div>
-      <div class="row"><span>الصوت</span><span>ريح، وموسيقى بتبدأ تتصاعد.</span></div>
-      <div class="refs">from: P01, P02, P15</div>
+    <div class="shot"><div class="time">3.5–5.5</div><div class="card">
+      <div class="top"><h3>٣. تعرّف على الثلاثة</h3><span class="chip c-ai">مولّد من صور</span><span class="conf">85%</span></div>
+      <div class="row"><span>الصورة</span><span>لقطة عريضة من ورا الثلاثة بأحزمتهم وخوذهم. فوق كل واحد بتطلع بطاقة اسم بالموشن.</span></div>
+      <div class="row"><span>النص</span><span class="ontext">المدير · أبو المحاسبة 😅 · الموظف الجديد (أول أسبوع)</span></div>
+      <div class="refs">from: P03, P05, P07, P10 + characters</div>
     </div></div>
 
-    <div class="shot"><div class="time">3.5–5.0</div><div class="card">
-      <div class="top"><h3>٤. الثلاثة على الحافة</h3><span class="chip c-ai">مولّد من صور</span></div>
-      <div class="row"><span>الصورة</span><span>لقطة عريضة من ورا: 3 أشخاص بأحزمة وخوذ واقفين على حافة المنصة، والغابة بعيدة تحتهم. ما في وجوه.</span></div>
-      <div class="refs">from: P03, P05, P10, P20–P22</div>
-    </div></div>
-
-    <div class="shot"><div class="time">5.0–6.5</div><div class="card">
-      <div class="top"><h3>٥. أبو المحاسبة بيتقدّم</h3><span class="chip c-ai">مولّد من صور</span></div>
-      <div class="row"><span>الصورة</span><span>لقطة قريبة للبوط بيتقدّم لآخر الخشبة، والأرض بعيدة كثير تحت.</span></div>
+    <div class="shot"><div class="time">5.5–7.0</div><div class="card">
+      <div class="top"><h3>٤. أبو المحاسبة بيتقدّم بثقة</h3><span class="chip c-ai">مولّد من صور</span><span class="conf">90%</span></div>
+      <div class="row"><span>الصورة</span><span>لقطة قريبة وواطية: بوطه بيتقدّم لآخر الخشبة، وبيطلّ لتحت.</span></div>
       <div class="refs">from: P04, P06</div>
     </div></div>
 
-    <div class="shot"><div class="time">6.5–8.0</div><div class="card">
-      <div class="top"><h3>٦. … وبيرجع خطوتين</h3><span class="chip c-ai">مولّد من صور</span></div>
-      <div class="row"><span>الصورة</span><span>لقطة متوسطة من الجنب: بيرجع خطوتين ورافع إيديه. الوجه جانبي أو بعيد.</span></div>
+    <div class="shot"><div class="time">7.0–8.5</div><div class="card">
+      <div class="top"><h3>٥. … وبيرجع خطوتين</h3><span class="chip c-ai">مولّد من صور</span><span class="conf">75%</span></div>
+      <div class="row"><span>الصورة</span><span>لقطة متوسطة من الجنب: بيرجع لورا ورافع إيديه. الوجه جانبي.</span></div>
       <div class="row"><span>النص</span><span class="ontext">أبو المحاسبة: «لا لا… بعدين» 😂</span></div>
-      <div class="row"><span>الصوت</span><span>صوت كوميدي خفيف (اختياري).</span></div>
-      <div class="refs">from: P03, P21</div>
+      <div class="refs">from: P03 + character</div>
     </div></div>
 
-    <div class="shot"><div class="time">8.0–9.5</div><div class="card">
-      <div class="top"><h3>٧. المدير بيتقدّم وبيوقف</h3><span class="chip c-ai">مولّد من صور</span></div>
-      <div class="row"><span>الصورة</span><span>المدير بيتقدّم بثبات للحافة، وبيوقف وبيلتفت لورا.</span></div>
-      <div class="refs">from: P03, P20</div>
+    <div class="shot"><div class="time">8.5–10.0</div><div class="card">
+      <div class="top"><h3>٦. المدير بيتقدّم وبيوقف</h3><span class="chip c-ai">مولّد من صور</span><span class="conf">80%</span></div>
+      <div class="row"><span>الصورة</span><span>المدير بيمشي بثبات للحافة، وبيوقف، وبيلتفت لورا. الكاميرا وراه شوي.</span></div>
+      <div class="refs">from: P03, P05 + character</div>
     </div></div>
 
-    <div class="shot"><div class="time">9.5–11.0</div><div class="card">
-      <div class="top"><h3>٨. «إنت. يلا.»</h3><span class="chip c-film">يُفضّل تصويره حقيقياً</span><span class="chip c-ai">أو مولّد</span></div>
-      <div class="row"><span>الصورة</span><span>المدير بيبتسم وبيشاور على الموظف الجديد. هاي اللقطة الوحيدة اللي فيها وجه وتعبير واضح، فتصويرها حقيقي بيرفع الثقة من 70% لـ95%.</span></div>
+    <div class="shot"><div class="time">10.0–11.0</div><div class="card">
+      <div class="top"><h3>٧. «إنت. يلا.»</h3><span class="chip c-film">يُفضّل تصويره حقيقياً</span><span class="chip c-ai">أو مولّد</span><span class="conf">95% / 65%</span></div>
+      <div class="row"><span>الصورة</span><span>المدير بيبتسم وبيشاور على الموظف الجديد. اللقطة الوحيدة اللي فيها وجه وتعبير واضح.</span></div>
       <div class="row"><span>الصوت</span><span>المدير بلهجة أردنية: <b>«إنت. يلا.»</b> من تسجيل حقيقي.</span></div>
     </div></div>
 
     <div class="shot reveal"><div class="time">11.0–12.0</div><div class="card">
-      <div class="top"><h3>٩. التحويلة: الكارابينر</h3><span class="chip c-film">يد على الشاشة</span><span class="chip c-ai">مولّد من صور</span></div>
-      <div class="row"><span>الصورة</span><span>اليد بتمسح الشاشة، وبعدها لقطة قريبة جداً لإيد بتسكّر الكارابينر على الحزام.</span></div>
-      <div class="row"><span>الصوت</span><span>«كليك» معدني، ثم دروب الموسيقى.</span></div>
+      <div class="top"><h3>٨. التحويلة: الكارابينر</h3><span class="chip c-ai">مولّد من صور</span><span class="conf">90%</span></div>
+      <div class="row"><span>الصورة</span><span>ماكرو: إيد الموظف الجديد بتسكّر الكارابينر على الحزام.</span></div>
+      <div class="row"><span>الصوت</span><span>«كليك» معدني، ودروب الموسيقى.</span></div>
       <div class="refs">from: P07, P08</div>
     </div></div>
 
-    <div class="shot reveal"><div class="time">12.0–14.0</div><div class="card">
-      <div class="top"><h3>١٠. الجديد بينزل أول، والفريق بيصفق</h3><span class="chip c-real">لقطة حقيقية موجودة</span></div>
-      <div class="row"><span>الصورة</span><span>نزول بالحبل عن البرج الخشبي، وبعدها الفريق بأحزمته بيصفق تحت.</span></div>
-      <div class="row"><span>الصوت</span><span>تصفيق وصراخ فرح (مؤثرات).</span></div>
-      <div class="refs">company_01 38.5–42.1s</div>
+    <div class="shot reveal"><div class="time">12.0–13.5</div><div class="card">
+      <div class="top"><h3>٩. الجديد بينزل أول</h3><span class="chip c-ai">مولّد من صور</span><span class="conf">85%</span></div>
+      <div class="row"><span>الصورة</span><span>من تحت لفوق: الموظف الجديد بيميل لورا وبينزل عن البرج، وخياله ضد سما الغروب.</span></div>
+      <div class="refs">from: P01, P09, P15</div>
     </div></div>
 
-    <div class="shot"><div class="time">14.0–16.0</div><div class="card">
-      <div class="top"><h3>١١. مونتاج الفريق</h3><span class="chip c-real">لقطات حقيقية موجودة</span></div>
-      <div class="row"><span>الصورة</span><span>3 لقطات سريعة: زبلاين مع فرحة، وتصفيق، وعناق.</span></div>
-      <div class="row"><span>النص</span><span class="ontext">المدير ما نزل أول… لأنه كان بدو يعرف مين بيتقدّم 👀</span></div>
-      <div class="refs">company_01 47.6s · company_03 38.9s · company_01 23.4s</div>
+    <div class="shot"><div class="time">13.5–15.0</div><div class="card">
+      <div class="top"><h3>١٠. الفريق بيصفق تحت</h3><span class="chip c-real">حقيقية بعد التلوين</span><span class="chip c-ai">أو مولّد</span><span class="conf">85%</span></div>
+      <div class="row"><span>الصورة</span><span>الفريق بأحزمته بيصرخ وبيصفق تحت البرج. اللقطة الحقيقية موجودة، بس مصوّرة الظهر، فبلوّنها لتركب على الغروب.</span></div>
+      <div class="row"><span>النص</span><span class="ontext">المدير ما نزل أول…<br>لأنه كان بدو يعرف مين بيتقدّم 👀</span></div>
+      <div class="refs">company_01 41.5–42.1s · or P16</div>
+    </div></div>
+
+    <div class="shot"><div class="time">15.0–16.0</div><div class="card">
+      <div class="top"><h3>١١. لحظة فرح سريعة</h3><span class="chip c-real">حقيقية بعد التلوين</span><span class="conf">85%</span></div>
+      <div class="row"><span>الصورة</span><span>زبلاين مع فرحة واضحة، ولقطة عناق، كل وحدة نص ثانية.</span></div>
+      <div class="refs">company_01 47.6s · company_01 23.4s</div>
     </div></div>
 
     <div class="shot"><div class="time">16.0–17.5</div><div class="card">
-      <div class="top"><h3>١٢. الختام والـLoop</h3><span class="chip c-film">يد على الشاشة</span></div>
-      <div class="row"><span>الصورة</span><span>بطاقة بألوان الغابة مع الشعار الأصلي على الشاشة. آخر مسحة يد بترجعنا لنفس إطار البداية، فالريل بيلفّ بسلاسة.</span></div>
+      <div class="top"><h3>١٢. الختام والـLoop</h3><span class="chip c-ai">موشن + الشعار الأصلي</span><span class="conf">95%</span></div>
+      <div class="row"><span>الصورة</span><span>بطاقة موشن بألوان الغابة مع الشعار الأصلي. آخر إطار بيرجع لنفس لقطة الأرجل على الحافة، فالريل بيلفّ بسلاسة.</span></div>
       <div class="row"><span>النص</span><span class="ontext">طلّع فريقك من المكتب… واكتشف مين فيه 🌲<br>اكتب «فريق» ونبعتلك العرض<br>مين بشركتكم بينزل أول؟ منشنوه 👇</span></div>
       <div class="row"><span>الصوت</span><span>صوت إعلاني فصيح: «The Forest Park… فريقك بيستاهل».</span></div>
-      <div class="refs">needs: brand PNG</div>
+      <div class="refs">needs: P17 (brand PNG)</div>
     </div></div>
 
   </div>
   <div class="note">
     <h3>ليش التصميم هيك</h3>
     <ul>
-      <li>كل لقطة مولّدة من ثانية لثانية ونص، وأغلبها من ورا أو قريبة على الأيدي والأرجل. هذا اللي بيقدر عليه التوليد بأعلى دقة.</li>
-      <li>الحدث بينفهم من النص على الشاشة، فما بنحتاج تعابير وجه دقيقة.</li>
-      <li>الجواب (الجديد بينزل) ما بيبين قبل الثانية 11.</li>
+      <li>الهوك بيبدأ بالخطر والسؤال مع بعض، فالمشاهد بيوقف وبيضل لآخر الريل ليعرف الجواب.</li>
+      <li>كل لقطة مولّدة من ثانية لثانيتين، وأغلبها أماكن أو أرجل أو أيدي أو أشخاص من ورا. هاي الأشياء اللي بيطلع فيها التوليد بأعلى واقعية، متل السيارات بالفيديو المرجعي.</li>
+      <li>الحدث بينفهم من النص على الشاشة، فما بنحتاج تعابير وجه دقيقة إلا بلقطة المدير.</li>
     </ul>
   </div>
 </section>
 
 <section>
+  <h2>نسبة الثقة</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>نوع اللقطة</th><th>الثقة</th></tr></thead>
+    <tbody>
+      <tr><td>البرج، والغابة، والدرون، والغروب</td><td class="n">90–95%</td></tr>
+      <tr><td>تفاصيل قريبة: أرجل، وكارابينر، وحبل</td><td class="n">85–90%</td></tr>
+      <tr><td>أشخاص من ورا أو من بعيد</td><td class="n">80–85%</td></tr>
+      <tr><td>وجه وتعبير (لقطة المدير)، مولّدة</td><td class="n">60–70%</td></tr>
+      <tr><td><b>الريل كامل، ولقطة المدير مولّدة</b></td><td class="n">85%</td></tr>
+      <tr><td><b>الريل كامل، ولقطة المدير مصوّرة حقيقياً</b></td><td class="n">90%</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
   <h2>قائمة الصور المطلوبة</h2>
-  <div class="tally"><span>ضرورية <b>14</b></span><span>إضافية <b>6</b></span><span>شخصيات <b>3</b> (اختياري)</span></div>
+  <div class="tally"><span>ضرورية <b>14</b></span><span>إضافية <b>5</b></span><span>شخصيات <b>3</b> (اختياري)</span></div>
 
   <div class="note">
     <h3>قواعد التصوير (لكل الصور)</h3>
@@ -201,10 +219,10 @@ section{display:grid;gap:16px}
 
   <div class="group">
     <h3>أ. البرج</h3>
-    <div class="photo"><span class="pid">P01</span><div class="body"><div class="head"><b>البرج كامل من الأرض</b><span class="chip c-must">ضرورية</span><span class="count">3 صور</span></div><p>من قدّام، على بعد 30 لـ50 متر، والبرج كامل بالكادر مع الصنوبر حوله.</p></div></div>
+    <div class="photo"><span class="pid">P01</span><div class="body"><div class="head"><b>البرج كامل من الأرض</b><span class="chip c-must">ضرورية</span><span class="count">3 صور</span></div><p>من قدّام، على بعد 30 لـ50 متر، والبرج كامل بالكادر مع الصنوبر حوله. وصورة كمان من تحته لفوق.</p></div></div>
     <div class="photo"><span class="pid">P02</span><div class="body"><div class="head"><b>البرج من بعيد ومن فوق</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>من أعلى نقطة قريبة (برج ثاني أو تلة)، والبرج مبيّن وسط الغابة. إذا عندكم درون، صورة منه أحسن.</p></div></div>
     <div class="photo"><span class="pid">P03</span><div class="body"><div class="head"><b>منصة القمة: نظرة عريضة</b><span class="chip c-must">ضرورية</span><span class="count">3</span></div><p>واقف بآخر المنصة ومصوّر باتجاه الحافة: الأرضية، والدرابزين، وفتحة النزول، والمنظر ورا.</p></div></div>
-    <div class="photo"><span class="pid">P04</span><div class="body"><div class="head"><b>الحافة لتحت</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>الجوال فوق الحافة (بحزام أمان طبعاً) ومصوّر لتحت بشكل عمودي، بحيث تبين الأرض والصنوبر بعيدين تحت.</p></div></div>
+    <div class="photo"><span class="pid">P04</span><div class="body"><div class="head"><b>الحافة لتحت</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>الجوال فوق الحافة (بحزام أمان طبعاً) ومصوّر لتحت بشكل عمودي، بحيث تبين الأرض والصنوبر بعيدين تحت. هاي أهم صورة للهوك.</p></div></div>
     <div class="photo"><span class="pid">P05</span><div class="body"><div class="head"><b>الحافة من ورا</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>من ورا منطقة الوقوف على ارتفاع الصدر، باتجاه الحافة والأفق. هون بنحط الثلاثة.</p></div></div>
     <div class="photo"><span class="pid">P06</span><div class="body"><div class="head"><b>الخشبة عن قرب</b><span class="chip c-must">ضرورية</span><span class="count">1</span></div><p>آخر لوح خشب أو آخر نقطة بالمنصة، قريبة ومن زاوية واطية.</p></div></div>
   </div>
@@ -230,7 +248,6 @@ section{display:grid;gap:16px}
   <div class="group">
     <h3>د. للختام</h3>
     <div class="photo"><span class="pid">P17</span><div class="body"><div class="head"><b>الشعار الأصلي PNG شفاف</b><span class="chip c-must">ضرورية</span><span class="count">ملف</span></div><p>من المصمم أو من ملفات الهوية. ما بنولّده ولا بنقصّه من فيديو.</p></div></div>
-    <div class="photo"><span class="pid">P18</span><div class="body"><div class="head"><b>طاولة المكتب للقطة الشاشة</b><span class="chip c-nice">إضافية</span><span class="count">1</span></div><p>نفس الطاولة والشاشة والكيبورد اللي رح تصوّروا عليها، عشان أجهّز البطاقات بالمقاس الصح.</p></div></div>
   </div>
 
   <div class="group">
@@ -246,21 +263,8 @@ section{display:grid;gap:16px}
 </section>
 
 <section>
-  <h2>تصوير الشاشة واليد</h2>
-  <div class="note">
-    <ul class="rules">
-      <li>بجهّزلك فيديو الشاشة جاهز، ومعه «بيب» خفيف قبل كل قطع بنص ثانية.</li>
-      <li>الجوال عمودي، 4K و30 إطار، ومسكته على مستوى الصدر بحيث يبين الكيبورد تحت متل المرجع.</li>
-      <li>سطوع الشاشة كامل، وإضاءة الغرفة دافئة وخفيفة. لا تخلّي في ضو قوي بينعكس على الشاشة.</li>
-      <li>مع كل بيب، اليد بتمسح الشاشة من اليمين لليسار وبتغطيها كاملة.</li>
-      <li>صوّر 4 محاولات كاملة، وأنا بختار الأحسن.</li>
-    </ul>
-  </div>
-</section>
-
-<section>
   <h2>الخطوة الجاية</h2>
-  <p>لما توصل الصور، بختار أفضلها، وبجهّز الصور المرجعية لكل لقطة مولّدة، وبعرضها عليك (بوابة الموافقة 2). قبل أي توليد بيستهلك كريدت، بعرض عليك عدد التوليدات والتكلفة التقديرية. تقديري المبدئي: 7 لقطات مولّدة، ومن 2 لـ3 نسخ لكل لقطة.</p>
+  <p>لما توصل الصور، بختار أفضلها، وبجهّز الصور المرجعية لكل لقطة مولّدة، وبعرضها عليك (بوابة الموافقة 2). قبل أي توليد بيستهلك كريدت، بعرض عليك عدد التوليدات والتكلفة التقديرية. تقديري المبدئي: 9 لقطات مولّدة، ومن 2 لـ3 نسخ لكل لقطة.</p>
 </section>
 
 </div>
