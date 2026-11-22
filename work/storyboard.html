@@ -1,0 +1,266 @@
+<title>ستوري بورد «مين بينزل أول»</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: single reading column, RTL; storyboard as a vertical timeline of shot cards with a time rail. */
+:root{
+  --bg:#f5f6f1; --surface:#ffffff; --fg:#1d2620; --muted:#5d6a60; --line:#dde2d8;
+  --pine:#1f5a3d; --gold:#b9852a; --real:#1f5a3d; --ai:#7a4bb0; --film:#b9852a;
+  --real-bg:#e3efe7; --ai-bg:#efe7f7; --film-bg:#f6ecd9;
+  --font-display:"Tajawal",system-ui,sans-serif; --font-body:"Tajawal",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121814; --surface:#1a221d; --fg:#e8ede7; --muted:#9aa89d; --line:#2c3830;
+  --pine:#6fc196; --gold:#e0b25e; --real:#6fc196; --ai:#c4a0ec; --film:#e0b25e;
+  --real-bg:#1d3326; --ai-bg:#2b2238; --film-bg:#33291a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121814; --surface:#1a221d; --fg:#e8ede7; --muted:#9aa89d; --line:#2c3830;
+  --pine:#6fc196; --gold:#e0b25e; --real:#6fc196; --ai:#c4a0ec; --film:#e0b25e;
+  --real-bg:#1d3326; --ai-bg:#2b2238; --film-bg:#33291a; color-scheme:dark}
+html{direction:rtl}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px}
+.wrap{max-width:760px;margin:0 auto;display:grid;gap:40px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;line-height:1.3;margin:0}
+h1{font-size:1.9rem;font-weight:800}
+h2{font-size:1.4rem;font-weight:800;color:var(--pine)}
+h3{font-size:1.08rem;font-weight:700}
+p{margin:0}
+.lead{color:var(--muted)}
+header{display:grid;gap:10px;border-bottom:2px solid var(--pine);padding-bottom:20px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:.92rem}
+.meta b{color:var(--fg);font-family:var(--font-mono);font-weight:500}
+section{display:grid;gap:16px}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-block;font-size:.8rem;font-weight:700;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.c-real{background:var(--real-bg);color:var(--real)}
+.c-ai{background:var(--ai-bg);color:var(--ai)}
+.c-film{background:var(--film-bg);color:var(--film)}
+.c-must{background:var(--pine);color:var(--bg)}
+.c-nice{border:1px solid var(--line);color:var(--muted)}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:6px}
+.note ul,.rules{margin:0;padding-right:20px;display:grid;gap:4px}
+/* shot timeline */
+.shots{display:grid;gap:0}
+.shot{display:grid;grid-template-columns:74px 1fr;gap:14px}
+.time{font-family:var(--font-mono);font-size:.82rem;color:var(--muted);text-align:left;direction:ltr;padding-top:16px;border-left:2px solid var(--line);padding-left:10px;position:relative}
+.time::after{content:"";position:absolute;left:-6px;top:22px;width:10px;height:10px;border-radius:50%;background:var(--pine)}
+.shot.reveal .time::after{background:var(--gold)}
+.card{min-width:0;padding-block:12px 18px;border-bottom:1px solid var(--line);display:grid;gap:6px}
+.card .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.row{display:grid;grid-template-columns:86px 1fr;gap:8px;font-size:.95rem}
+.row span:first-child{color:var(--muted);font-size:.86rem;padding-top:2px}
+.ontext{font-weight:800;color:var(--fg)}
+.refs{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);direction:ltr;text-align:right}
+/* photo list */
+.group{display:grid;gap:10px}
+.photo{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.pid{font-family:var(--font-mono);font-weight:500;color:var(--pine);font-size:.95rem;padding-top:2px}
+.photo .body{min-width:0;display:grid;gap:4px}
+.photo .head{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.photo p{color:var(--muted);font-size:.93rem}
+.count{font-size:.82rem;color:var(--gold);font-weight:700}
+.tally{display:flex;flex-wrap:wrap;gap:10px 24px;font-size:.95rem}
+.tally b{font-family:var(--font-mono);font-weight:500;color:var(--pine)}
+@media (max-width:480px){.shot{grid-template-columns:58px 1fr;gap:10px}.row{grid-template-columns:1fr;gap:0}h1{font-size:1.55rem}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <h1>ريل الشركات: «توقّع مين بينزل أول»</h1>
+  <p class="lead">ستوري بورد بأسلوب «اليد على الشاشة»، وقائمة الصور المطلوبة لتوليد اللقطات بالذكاء الاصطناعي.</p>
+  <div class="meta"><span>المدة <b>17.5 ث</b></span><span>المقاس <b>1080×1920 · 30fps</b></span><span>الحساب <b>@the_forest_park</b></span><span>نسخة <b>v1 · 22/11/2026</b></span></div>
+</header>
+
+<section>
+  <h2>الفكرة باختصار</h2>
+  <p>نفس أسلوب الفيديو المرجعي: جوال بيصوّر شاشة كمبيوتر بالمكتب، وكل ما اليد بتمرّ قدام الشاشة بيتقلب المشهد. اللي بيظهر على الشاشة خليط من لقطات مولّدة من صور البارك، ولقطات حقيقية من فيديوهات الشركات. إعادة تصوير الشاشة بالجوال بتوحّد الشكل وبتخبّي أي عيب صغير بالتوليد.</p>
+  <div class="legend">
+    <span class="chip c-film">تصوير بالجوال</span>
+    <span class="chip c-ai">مولّد من صور</span>
+    <span class="chip c-real">لقطة حقيقية موجودة</span>
+  </div>
+</section>
+
+<section>
+  <h2>الستوري بورد</h2>
+  <div class="shots">
+
+    <div class="shot"><div class="time">0.0–2.0</div><div class="card">
+      <div class="top"><h3>١. الشاشة والتوقّع</h3><span class="chip c-film">تصوير بالجوال</span><span class="chip c-ai">بورتريهات مولّدة</span></div>
+      <div class="row"><span>الصورة</span><span>لقطة POV لشاشة مكتب، والكيبورد مبيّن تحت. على الشاشة 3 بطاقات بورتريه: المدير / أبو المحاسبة / الموظف الجديد (أول أسبوع).</span></div>
+      <div class="row"><span>النص</span><span class="ontext">60 متر. 3 موظفين. واحد بس بينزل أول… توقّع 👇</span></div>
+      <div class="row"><span>الصوت</span><span>أجواء مكتب، ثم نبضة توتر.</span></div>
+      <div class="refs">needs: P20–P22 (or generated characters)</div>
+    </div></div>
+
+    <div class="shot"><div class="time">2.0–2.5</div><div class="card">
+      <div class="top"><h3>٢. اليد بتقلب المشهد</h3><span class="chip c-film">تصوير بالجوال</span></div>
+      <div class="row"><span>الصورة</span><span>اليد بتمسح الشاشة من اليمين لليسار. القطع بيصير لحظة ما تغطيها.</span></div>
+      <div class="row"><span>الصوت</span><span>Whoosh قوي.</span></div>
+    </div></div>
+
+    <div class="shot"><div class="time">2.5–3.5</div><div class="card">
+      <div class="top"><h3>٣. الوصول لقمة البرج</h3><span class="chip c-ai">مولّد من صور</span></div>
+      <div class="row"><span>الصورة</span><span>حركة درون بطيئة لقدّام باتجاه قمة البرج وقت الغروب، والصنوبر تحت.</span></div>
+      <div class="row"><span>الصوت</span><span>ريح، وموسيقى بتبدأ تتصاعد.</span></div>
+      <div class="refs">from: P01, P02, P15</div>
+    </div></div>
+
+    <div class="shot"><div class="time">3.5–5.0</div><div class="card">
+      <div class="top"><h3>٤. الثلاثة على الحافة</h3><span class="chip c-ai">مولّد من صور</span></div>
+      <div class="row"><span>الصورة</span><span>لقطة عريضة من ورا: 3 أشخاص بأحزمة وخوذ واقفين على حافة المنصة، والغابة بعيدة تحتهم. ما في وجوه.</span></div>
+      <div class="refs">from: P03, P05, P10, P20–P22</div>
+    </div></div>
+
+    <div class="shot"><div class="time">5.0–6.5</div><div class="card">
+      <div class="top"><h3>٥. أبو المحاسبة بيتقدّم</h3><span class="chip c-ai">مولّد من صور</span></div>
+      <div class="row"><span>الصورة</span><span>لقطة قريبة للبوط بيتقدّم لآخر الخشبة، والأرض بعيدة كثير تحت.</span></div>
+      <div class="refs">from: P04, P06</div>
+    </div></div>
+
+    <div class="shot"><div class="time">6.5–8.0</div><div class="card">
+      <div class="top"><h3>٦. … وبيرجع خطوتين</h3><span class="chip c-ai">مولّد من صور</span></div>
+      <div class="row"><span>الصورة</span><span>لقطة متوسطة من الجنب: بيرجع خطوتين ورافع إيديه. الوجه جانبي أو بعيد.</span></div>
+      <div class="row"><span>النص</span><span class="ontext">أبو المحاسبة: «لا لا… بعدين» 😂</span></div>
+      <div class="row"><span>الصوت</span><span>صوت كوميدي خفيف (اختياري).</span></div>
+      <div class="refs">from: P03, P21</div>
+    </div></div>
+
+    <div class="shot"><div class="time">8.0–9.5</div><div class="card">
+      <div class="top"><h3>٧. المدير بيتقدّم وبيوقف</h3><span class="chip c-ai">مولّد من صور</span></div>
+      <div class="row"><span>الصورة</span><span>المدير بيتقدّم بثبات للحافة، وبيوقف وبيلتفت لورا.</span></div>
+      <div class="refs">from: P03, P20</div>
+    </div></div>
+
+    <div class="shot"><div class="time">9.5–11.0</div><div class="card">
+      <div class="top"><h3>٨. «إنت. يلا.»</h3><span class="chip c-film">يُفضّل تصويره حقيقياً</span><span class="chip c-ai">أو مولّد</span></div>
+      <div class="row"><span>الصورة</span><span>المدير بيبتسم وبيشاور على الموظف الجديد. هاي اللقطة الوحيدة اللي فيها وجه وتعبير واضح، فتصويرها حقيقي بيرفع الثقة من 70% لـ95%.</span></div>
+      <div class="row"><span>الصوت</span><span>المدير بلهجة أردنية: <b>«إنت. يلا.»</b> من تسجيل حقيقي.</span></div>
+    </div></div>
+
+    <div class="shot reveal"><div class="time">11.0–12.0</div><div class="card">
+      <div class="top"><h3>٩. التحويلة: الكارابينر</h3><span class="chip c-film">يد على الشاشة</span><span class="chip c-ai">مولّد من صور</span></div>
+      <div class="row"><span>الصورة</span><span>اليد بتمسح الشاشة، وبعدها لقطة قريبة جداً لإيد بتسكّر الكارابينر على الحزام.</span></div>
+      <div class="row"><span>الصوت</span><span>«كليك» معدني، ثم دروب الموسيقى.</span></div>
+      <div class="refs">from: P07, P08</div>
+    </div></div>
+
+    <div class="shot reveal"><div class="time">12.0–14.0</div><div class="card">
+      <div class="top"><h3>١٠. الجديد بينزل أول، والفريق بيصفق</h3><span class="chip c-real">لقطة حقيقية موجودة</span></div>
+      <div class="row"><span>الصورة</span><span>نزول بالحبل عن البرج الخشبي، وبعدها الفريق بأحزمته بيصفق تحت.</span></div>
+      <div class="row"><span>الصوت</span><span>تصفيق وصراخ فرح (مؤثرات).</span></div>
+      <div class="refs">company_01 38.5–42.1s</div>
+    </div></div>
+
+    <div class="shot"><div class="time">14.0–16.0</div><div class="card">
+      <div class="top"><h3>١١. مونتاج الفريق</h3><span class="chip c-real">لقطات حقيقية موجودة</span></div>
+      <div class="row"><span>الصورة</span><span>3 لقطات سريعة: زبلاين مع فرحة، وتصفيق، وعناق.</span></div>
+      <div class="row"><span>النص</span><span class="ontext">المدير ما نزل أول… لأنه كان بدو يعرف مين بيتقدّم 👀</span></div>
+      <div class="refs">company_01 47.6s · company_03 38.9s · company_01 23.4s</div>
+    </div></div>
+
+    <div class="shot"><div class="time">16.0–17.5</div><div class="card">
+      <div class="top"><h3>١٢. الختام والـLoop</h3><span class="chip c-film">يد على الشاشة</span></div>
+      <div class="row"><span>الصورة</span><span>بطاقة بألوان الغابة مع الشعار الأصلي على الشاشة. آخر مسحة يد بترجعنا لنفس إطار البداية، فالريل بيلفّ بسلاسة.</span></div>
+      <div class="row"><span>النص</span><span class="ontext">طلّع فريقك من المكتب… واكتشف مين فيه 🌲<br>اكتب «فريق» ونبعتلك العرض<br>مين بشركتكم بينزل أول؟ منشنوه 👇</span></div>
+      <div class="row"><span>الصوت</span><span>صوت إعلاني فصيح: «The Forest Park… فريقك بيستاهل».</span></div>
+      <div class="refs">needs: brand PNG</div>
+    </div></div>
+
+  </div>
+  <div class="note">
+    <h3>ليش التصميم هيك</h3>
+    <ul>
+      <li>كل لقطة مولّدة من ثانية لثانية ونص، وأغلبها من ورا أو قريبة على الأيدي والأرجل. هذا اللي بيقدر عليه التوليد بأعلى دقة.</li>
+      <li>الحدث بينفهم من النص على الشاشة، فما بنحتاج تعابير وجه دقيقة.</li>
+      <li>الجواب (الجديد بينزل) ما بيبين قبل الثانية 11.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>قائمة الصور المطلوبة</h2>
+  <div class="tally"><span>ضرورية <b>14</b></span><span>إضافية <b>6</b></span><span>شخصيات <b>3</b> (اختياري)</span></div>
+
+  <div class="note">
+    <h3>قواعد التصوير (لكل الصور)</h3>
+    <ul class="rules">
+      <li><b>الوقت:</b> آخر ساعة قبل الغروب. الغروب بعمّان هالأيام تقريباً 4:30 العصر، فالتصوير من 3:30 لـ4:25. هذا أهم شي.</li>
+      <li><b>الجوال:</b> وضع الصور العادي بأعلى دقة (48MP إذا متوفر)، وعدسة 1x، وبدون زوم رقمي. امسح العدسة قبل ما تبدأ.</li>
+      <li><b>الاتجاه:</b> كل صورة <b>عمودي وأفقي</b>.</li>
+      <li><b>الأشخاص:</b> بدون ناس إلا إذا الصورة بتطلب. <b>ولا أطفال أبداً</b>.</li>
+      <li><b>ممنوع:</b> شعارات شركات ثانية، ولافتات فيها كتابة قريبة، ولا تستخدم فلاتر.</li>
+      <li><b>الإرسال:</b> ارفعها على Google Drive بالملفات الأصلية. لا تبعتها على واتساب.</li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <h3>أ. البرج</h3>
+    <div class="photo"><span class="pid">P01</span><div class="body"><div class="head"><b>البرج كامل من الأرض</b><span class="chip c-must">ضرورية</span><span class="count">3 صور</span></div><p>من قدّام، على بعد 30 لـ50 متر، والبرج كامل بالكادر مع الصنوبر حوله.</p></div></div>
+    <div class="photo"><span class="pid">P02</span><div class="body"><div class="head"><b>البرج من بعيد ومن فوق</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>من أعلى نقطة قريبة (برج ثاني أو تلة)، والبرج مبيّن وسط الغابة. إذا عندكم درون، صورة منه أحسن.</p></div></div>
+    <div class="photo"><span class="pid">P03</span><div class="body"><div class="head"><b>منصة القمة: نظرة عريضة</b><span class="chip c-must">ضرورية</span><span class="count">3</span></div><p>واقف بآخر المنصة ومصوّر باتجاه الحافة: الأرضية، والدرابزين، وفتحة النزول، والمنظر ورا.</p></div></div>
+    <div class="photo"><span class="pid">P04</span><div class="body"><div class="head"><b>الحافة لتحت</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>الجوال فوق الحافة (بحزام أمان طبعاً) ومصوّر لتحت بشكل عمودي، بحيث تبين الأرض والصنوبر بعيدين تحت.</p></div></div>
+    <div class="photo"><span class="pid">P05</span><div class="body"><div class="head"><b>الحافة من ورا</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>من ورا منطقة الوقوف على ارتفاع الصدر، باتجاه الحافة والأفق. هون بنحط الثلاثة.</p></div></div>
+    <div class="photo"><span class="pid">P06</span><div class="body"><div class="head"><b>الخشبة عن قرب</b><span class="chip c-must">ضرورية</span><span class="count">1</span></div><p>آخر لوح خشب أو آخر نقطة بالمنصة، قريبة ومن زاوية واطية.</p></div></div>
+  </div>
+
+  <div class="group">
+    <h3>ب. المعدات</h3>
+    <div class="photo"><span class="pid">P07</span><div class="body"><div class="head"><b>حزام ملبوس عن قرب</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>شخص لابس الحزام، والصورة من الصدر للركب. الوجه مش ضروري.</p></div></div>
+    <div class="photo"><span class="pid">P08</span><div class="body"><div class="head"><b>كارابينر وجهاز النزول</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>قريبة جداً (ماكرو) للكارابينر وهو مسكّر على الحزام، وجهاز النزول مع الحبل.</p></div></div>
+    <div class="photo"><span class="pid">P09</span><div class="body"><div class="head"><b>الحبل نازل عن الحافة</b><span class="chip c-must">ضرورية</span><span class="count">1</span></div><p>الحبل مشدود ونازل من المنصة لتحت.</p></div></div>
+    <div class="photo"><span class="pid">P10</span><div class="body"><div class="head"><b>الخوذة</b><span class="chip c-nice">إضافية</span><span class="count">1</span></div><p>الخوذة اللي بتلبسوها، بلونها الحقيقي.</p></div></div>
+  </div>
+
+  <div class="group">
+    <h3>ج. المكان والأجواء</h3>
+    <div class="photo"><span class="pid">P11</span><div class="body"><div class="head"><b>الغابة من قمة البرج</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>بانوراما للصنوبر من فوق وقت الغروب.</p></div></div>
+    <div class="photo"><span class="pid">P12</span><div class="body"><div class="head"><b>بين الصنوبر من الأرض</b><span class="chip c-must">ضرورية</span><span class="count">2</span></div><p>الشمس داخلة بين الشجر وعاملة أشعة ضوء.</p></div></div>
+    <div class="photo"><span class="pid">P13</span><div class="body"><div class="head"><b>الزبلاين</b><span class="chip c-nice">إضافية</span><span class="count">1</span></div><p>نقطة الانطلاق مع الكيبل ممدود فوق الغابة.</p></div></div>
+    <div class="photo"><span class="pid">P14</span><div class="body"><div class="head"><b>بوابة البارك</b><span class="chip c-nice">إضافية</span><span class="count">1</span></div><p>اللافتة الخشبية «The Forest Park» من قدّام.</p></div></div>
+    <div class="photo"><span class="pid">P15</span><div class="body"><div class="head"><b>السما وقت الغروب</b><span class="chip c-must">ضرورية</span><span class="count">1</span></div><p>الأفق والسما من قمة البرج، عشان نوحّد ألوان كل اللقطات.</p></div></div>
+    <div class="photo"><span class="pid">P16</span><div class="body"><div class="head"><b>منطقة التجمع تحت البرج</b><span class="chip c-nice">إضافية</span><span class="count">1</span></div><p>المكان اللي بيقف فيه الفريق وبيصفق، من مستوى العين.</p></div></div>
+  </div>
+
+  <div class="group">
+    <h3>د. للختام</h3>
+    <div class="photo"><span class="pid">P17</span><div class="body"><div class="head"><b>الشعار الأصلي PNG شفاف</b><span class="chip c-must">ضرورية</span><span class="count">ملف</span></div><p>من المصمم أو من ملفات الهوية. ما بنولّده ولا بنقصّه من فيديو.</p></div></div>
+    <div class="photo"><span class="pid">P18</span><div class="body"><div class="head"><b>طاولة المكتب للقطة الشاشة</b><span class="chip c-nice">إضافية</span><span class="count">1</span></div><p>نفس الطاولة والشاشة والكيبورد اللي رح تصوّروا عليها، عشان أجهّز البطاقات بالمقاس الصح.</p></div></div>
+  </div>
+
+  <div class="group">
+    <h3>هـ. الشخصيات (اختر طريقة وحدة)</h3>
+    <div class="note">
+      <p><b>الطريقة الأولى، بنصح فيها:</b> بولّد 3 شخصيات من الصفر (المدير، وأبو المحاسبة، والموظف الجديد). ما في مشكلة موافقات، وبتطلع الشخصية ثابتة بكل اللقطات. بعرضهم عليك تختار قبل التحريك.</p>
+      <p><b>الطريقة الثانية:</b> 3 أشخاص حقيقيين من الموظفين، مع <b>موافقة مكتوبة</b> من كل واحد. لكل شخص 4 صور: قدّام، ونص جنب، وجنب، وجسم كامل لابس الحزام.</p>
+    </div>
+    <div class="photo"><span class="pid">P20</span><div class="body"><div class="head"><b>المدير</b><span class="chip c-nice">بس للطريقة الثانية</span><span class="count">4</span></div><p>رجل بالأربعينات أو الخمسينات، هادي ومحترم.</p></div></div>
+    <div class="photo"><span class="pid">P21</span><div class="body"><div class="head"><b>أبو المحاسبة</b><span class="chip c-nice">بس للطريقة الثانية</span><span class="count">4</span></div><p>شخصية مألوفة وواثقة زيادة، وبتضحّك بدون ما تنهان.</p></div></div>
+    <div class="photo"><span class="pid">P22</span><div class="body"><div class="head"><b>الموظف الجديد</b><span class="chip c-nice">بس للطريقة الثانية</span><span class="count">4</span></div><p>شب أو صبية بالعشرينات، خجول بالبداية.</p></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>تصوير الشاشة واليد</h2>
+  <div class="note">
+    <ul class="rules">
+      <li>بجهّزلك فيديو الشاشة جاهز، ومعه «بيب» خفيف قبل كل قطع بنص ثانية.</li>
+      <li>الجوال عمودي، 4K و30 إطار، ومسكته على مستوى الصدر بحيث يبين الكيبورد تحت متل المرجع.</li>
+      <li>سطوع الشاشة كامل، وإضاءة الغرفة دافئة وخفيفة. لا تخلّي في ضو قوي بينعكس على الشاشة.</li>
+      <li>مع كل بيب، اليد بتمسح الشاشة من اليمين لليسار وبتغطيها كاملة.</li>
+      <li>صوّر 4 محاولات كاملة، وأنا بختار الأحسن.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>الخطوة الجاية</h2>
+  <p>لما توصل الصور، بختار أفضلها، وبجهّز الصور المرجعية لكل لقطة مولّدة، وبعرضها عليك (بوابة الموافقة 2). قبل أي توليد بيستهلك كريدت، بعرض عليك عدد التوليدات والتكلفة التقديرية. تقديري المبدئي: 7 لقطات مولّدة، ومن 2 لـ3 نسخ لكل لقطة.</p>
+</section>
+
+</div>
