@@ -1,0 +1,6 @@
+input/**/*.mp4
+input/**/*.mov
+input/**/*.MOV
+input/**/*.MP4
+work/scenes/
+renders/
