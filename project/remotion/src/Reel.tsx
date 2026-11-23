@@ -229,8 +229,6 @@ export const Reel: React.FC<{hook: string}> = ({hook}) => {
 			<S k="screenMorning"><ScreenMorning dur={d('screenMorning')} /></S>
 			<S k="end"><EndCard dur={d('end')} /></S>
 
-			{/* fiction disclosure */}
-			<div style={{position: 'absolute', top: 262, left: 70, direction: 'rtl', fontFamily: FONT, fontWeight: 700, fontSize: 26, color: 'rgba(255,255,255,0.78)', background: 'rgba(0,0,0,0.35)', padding: '4px 14px', borderRadius: 8}}>قصة تمثيلية</div>
 			{/* captions */}
 			<Sequence from={0} durationInFrames={66}><Caption lines={HOOKS[hook]} dur={66} y={315} size={76} instant /></Sequence>
 			<Sequence from={c('screenNight')} durationInFrames={42}><Caption lines={['وقبل يومين…', 'كان كاتب استقالته.']} dur={42} y={315} size={70} /></Sequence>
