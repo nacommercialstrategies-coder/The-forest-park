@@ -81,7 +81,7 @@ export const EmailUI: React.FC<{
 				<div style={{fontSize: 38, lineHeight: 1.75, color: ink, paddingTop: 26}}>
 					<div>تحية طيبة،</div>
 					<div>أتقدّم إليكم باستقالتي من العمل،</div>
-					<div>شاكراً لكم كل الفترة الماضية.</div>
+					<div>شاكراً لكم حسن تعاونكم طوال الفترة الماضية.</div>
 				</div>
 				{/* buttons row */}
 				<div style={{position: 'absolute', bottom: 36, right: 56, left: 56, display: 'flex', alignItems: 'center', gap: 24}}>
@@ -118,14 +118,13 @@ export const EmailUI: React.FC<{
 				<div
 					style={{
 						position: 'absolute',
-						bottom: 90,
-						left: '50%',
-						transform: 'translateX(-50%)',
+						bottom: 250,
+						right: 200,
 						background: '#1f2328',
 						color: '#fff',
-						fontSize: 40,
-						fontWeight: 700,
-						padding: '20px 48px',
+						fontSize: 56,
+						fontWeight: 800,
+						padding: '24px 56px',
 						borderRadius: 18,
 						opacity: Math.min(1, (deletedProgress - 0.6) / 0.25),
 					}}

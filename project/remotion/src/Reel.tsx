@@ -4,23 +4,23 @@ import {Cursor, EmailUI} from './EmailUI';
 import {FONT, loadFonts} from './fonts';
 
 export const FPS = 30;
-export const DURATION = 525; // 17.5 s
+export const DURATION = 537; // 17.9 s
 
 export const HOOKS: Record<string, string[]> = {
 	A: ['في موظف بشركتك…', 'كاتب استقالته', 'وما بعتها لسا.'],
-	B: ['أحسن موظف عندك…', 'ممكن يكون هلّق', 'بيكتب استقالته.'],
-	C: ['الاستقالة…', 'مش دايماً', 'عشان الراتب.'],
+	B: ['أحسن موظف عندك…', 'ممكن يكون هسّا', 'بكتب استقالته.'],
+	C: ['الاستقالة…', 'ما بتيجي', 'فجأة.'],
 };
 
 const W = 1080;
 const H = 1920;
 
 // ---------- captions ----------
-const Caption: React.FC<{lines: string[]; dur: number; y?: number; size?: number}> = ({lines, dur, y = 300, size = 74}) => {
+const Caption: React.FC<{lines: string[]; dur: number; y?: number; size?: number; instant?: boolean}> = ({lines, dur, y = 300, size = 74, instant = false}) => {
 	const f = useCurrentFrame();
-	const inO = interpolate(f, [0, 6], [0, 1], {extrapolateRight: 'clamp'});
+	const inO = instant ? 1 : interpolate(f, [0, 6], [0, 1], {extrapolateRight: 'clamp'});
 	const outO = interpolate(f, [dur - 5, dur], [1, 0], {extrapolateLeft: 'clamp'});
-	const rise = interpolate(f, [0, 8], [18, 0], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+	const rise = instant ? 0 : interpolate(f, [0, 8], [18, 0], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
 	return (
 		<div
 			style={{
@@ -41,14 +41,16 @@ const Caption: React.FC<{lines: string[]; dur: number; y?: number; size?: number
 			}}
 		>
 			{lines.map((l, i) => (
-				<div key={i}>{l}</div>
+				<div key={i}>
+					<span style={{background: 'rgba(0,0,0,0.42)', padding: '0 18px', borderRadius: 12, boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone'}}>{l}</span>
+				</div>
 			))}
 		</div>
 	);
 };
 
 // ---------- footage ----------
-const Clip: React.FC<{rate?: number; src: string; start?: number; filter?: string; zoom?: [number, number]; dur: number; objectPosition?: string}> = ({
+const Clip: React.FC<{origin?: string; rate?: number; src: string; start?: number; filter?: string; zoom?: [number, number]; dur: number; objectPosition?: string}> = ({
 	src,
 	start = 0,
 	filter,
@@ -56,6 +58,7 @@ const Clip: React.FC<{rate?: number; src: string; start?: number; filter?: strin
 	dur,
 	objectPosition = 'center',
 	rate = 1,
+	origin,
 }) => {
 	const f = useCurrentFrame();
 	const s = interpolate(f, [0, dur], zoom);
@@ -66,7 +69,7 @@ const Clip: React.FC<{rate?: number; src: string; start?: number; filter?: strin
 				startFrom={Math.round(start * FPS)}
 				playbackRate={rate}
 				muted
-				style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition, transform: `scale(${s})`, filter}}
+				style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition, transform: `scale(${s})`, transformOrigin: origin ?? (objectPosition === 'center' ? 'center' : '50% 8%'), filter}}
 			/>
 		</AbsoluteFill>
 	);
@@ -91,7 +94,7 @@ const ScreenNight: React.FC<{dur: number}> = ({dur}) => {
 				style={{
 					position: 'absolute',
 					left: 1080 - 60 - 1600,
-					top: 640,
+					top: 570,
 					width: 1600,
 					height: 1000,
 					transform: `scale(${1.0 * s}) perspective(2400px) rotateX(4deg) rotateY(-9deg)`,
@@ -123,7 +126,7 @@ const ScreenMorning: React.FC<{dur: number}> = ({dur}) => {
 				style={{
 					position: 'absolute',
 					left: 1080 - 60 - 1600,
-					top: 640,
+					top: 570,
 					width: 1600,
 					height: 1000,
 					transform: `scale(${1.0 * s}) perspective(2400px) rotateX(4deg) rotateY(-9deg)`,
@@ -147,7 +150,7 @@ const EndCard: React.FC<{dur: number}> = ({dur}) => {
 	const logoO = interpolate(f, [0, 10], [0, 1], {extrapolateRight: 'clamp'});
 	const logoS = interpolate(f, [0, 14], [0.92, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
 	const t1 = interpolate(f, [6, 14], [0, 1], {extrapolateRight: 'clamp'});
-	const t2 = interpolate(f, [14, 22], [0, 1], {extrapolateRight: 'clamp'});
+	const t2 = interpolate(f, [8, 16], [0, 1], {extrapolateRight: 'clamp'});
 	const out = interpolate(f, [dur - 6, dur], [1, 0], {extrapolateLeft: 'clamp'});
 	return (
 		<AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 40%, #24533b 0%, #12301f 70%, #0b1f14 100%)', opacity: out}}>
@@ -172,7 +175,7 @@ const EndCard: React.FC<{dur: number}> = ({dur}) => {
 						opacity: t2,
 					}}
 				>
-					اكتب «فريق» ونبعتلك البرنامج
+					ابعتلنا «فريق» بالخاص
 				</div>
 			</div>
 		</AbsoluteFill>
@@ -186,11 +189,10 @@ export const SHOTS = {
 	meeting: [120, 195],
 	edge: [195, 270],
 	descent: [270, 300],
-	cheer: [300, 327],
-	hug: [327, 351],
-	zip: [351, 378],
-	screenMorning: [378, 468],
-	end: [468, 525],
+	cheer: [300, 330],
+	hug: [330, 378],
+	screenMorning: [378, 450],
+	end: [450, 537],
 } as const;
 
 const S: React.FC<{k: keyof typeof SHOTS; children: React.ReactNode}> = ({k, children}) => (
@@ -208,23 +210,24 @@ export const Reel: React.FC<{hook: string}> = ({hook}) => {
 		<AbsoluteFill style={{background: '#000', width: W, height: H}}>
 			<S k="screenNight"><ScreenNight dur={d('screenNight')} /></S>
 			<S k="office"><Clip src="office_comp.mp4" start={0.2} dur={d('office')} zoom={[1.0, 1.04]} filter="saturate(0.9) contrast(1.05)" /><Vignette /></S>
-			<S k="meeting"><Clip src="meeting.mp4" start={0.4} dur={d('meeting')} zoom={[1.02, 1.0]} filter="saturate(0.92)" /><Vignette strength={0.35} /></S>
-			<S k="edge"><Clip src="edge.mp4" start={0.3} dur={d('edge')} filter="saturate(1.02)" /><Vignette strength={0.4} /></S>
-			<S k="descent"><Clip src="descent.mp4" start={0.1} dur={d('descent')} zoom={[1.0, 1.05]} /><Vignette strength={0.4} /></S>
-			<S k="cheer"><Clip rate={0.66} src="real_cheer.mp4" dur={d('cheer')} zoom={[1.06, 1.1]} filter={WARM_REAL} /><Vignette strength={0.4} /></S>
-			<S k="hug"><Clip src="real_hug.mp4" dur={d('hug')} zoom={[1.05, 1.1]} filter={WARM_REAL} /><Vignette strength={0.4} /></S>
-			<S k="zip"><Clip src="real_zip.mp4" dur={d('zip')} zoom={[1.05, 1.1]} filter={WARM_REAL} /><Vignette strength={0.4} /></S>
+			<S k="meeting"><Clip src="meeting.mp4" start={0.4} dur={d('meeting')} zoom={[1.55, 1.6]} origin="22% 42%" filter="saturate(0.9)" /><Vignette strength={0.35} /></S>
+			<S k="edge"><Clip src="edge.mp4" start={0.3} dur={d('edge')} zoom={[1.72, 1.8]} objectPosition="50% 0%" filter="saturate(1.02) contrast(1.04)" /><Vignette strength={0.4} /></S>
+			<S k="descent"><Clip src="descent.mp4" start={0.1} dur={d('descent')} zoom={[1.0, 1.05]} filter="brightness(0.78) contrast(1.15)" /><Vignette strength={0.4} /></S>
+			<S k="cheer"><Clip src="cheer.mp4" start={1.7} dur={d('cheer')} zoom={[1.0, 1.04]} /><Vignette strength={0.4} /></S>
+			<S k="hug"><Clip src="hug.mp4" start={1.0} dur={d('hug')} zoom={[1.02, 1.07]} /><Vignette strength={0.4} /></S>
 			<S k="screenMorning"><ScreenMorning dur={d('screenMorning')} /></S>
 			<S k="end"><EndCard dur={d('end')} /></S>
 
+			{/* fiction disclosure */}
+			<div style={{position: 'absolute', top: 262, left: 70, direction: 'rtl', fontFamily: FONT, fontWeight: 700, fontSize: 26, color: 'rgba(255,255,255,0.78)', background: 'rgba(0,0,0,0.35)', padding: '4px 14px', borderRadius: 8}}>قصة تمثيلية</div>
 			{/* captions */}
-			<Sequence from={0} durationInFrames={75}><Caption lines={HOOKS[hook]} dur={75} y={300} size={72} /></Sequence>
+			<Sequence from={0} durationInFrames={75}><Caption lines={HOOKS[hook]} dur={75} y={270} size={62} instant /></Sequence>
 			<Sequence from={75} durationInFrames={45}><Caption lines={['مش عشان الراتب…']} dur={45} /></Sequence>
 			<Sequence from={120} durationInFrames={75}><Caption lines={['عشان حاسس إنه', 'ما حدا شايفه.']} dur={75} /></Sequence>
 			<Sequence from={195} durationInFrames={75}><Caption lines={['لحد ما إجا يوم…']} dur={75} /></Sequence>
-			<Sequence from={270} durationInFrames={57}><Caption lines={['والكل صار يصرخ باسمه.']} dur={57} /></Sequence>
-			<Sequence from={327} durationInFrames={51}><Caption lines={['أحياناً يوم واحد…', 'بيرجّعله إحساسه', 'إنه جزء من فريق.']} dur={51} size={64} /></Sequence>
-			<Sequence from={378} durationInFrames={90}><Caption lines={['وبيضل…', 'بدل ما يروح.']} dur={90} y={330} size={76} /></Sequence>
+			<Sequence from={270} durationInFrames={60}><Caption lines={['والكل صار ينادي باسمه.']} dur={60} /></Sequence>
+			<Sequence from={330} durationInFrames={48}><Caption lines={['يوم واحد…', 'رجّعله إحساس الفريق.']} dur={48} size={64} /></Sequence>
+			<Sequence from={378} durationInFrames={72}><Caption lines={['وضلّ…', 'بدل ما يروح.']} dur={72} y={300} size={76} /></Sequence>
 		</AbsoluteFill>
 	);
 };
