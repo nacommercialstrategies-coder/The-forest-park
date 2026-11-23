@@ -8,7 +8,7 @@ project/remotion/node_modules/
 project/remotion/public/*.mp4
 work/gen/*.mp4
 work/gen/*.png
-deliver/*.mp4
 work/audio/*.wav
 !work/audio/mix_m14.wav
 input/reference/
+work/drive/

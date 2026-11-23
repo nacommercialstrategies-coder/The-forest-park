@@ -42,7 +42,7 @@ const Caption: React.FC<{lines: string[]; dur: number; y?: number; size?: number
 		>
 			{lines.map((l, i) => (
 				<div key={i}>
-					<span style={{background: 'rgba(0,0,0,0.42)', padding: '0 18px', borderRadius: 12, boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone'}}>{l}</span>
+					<span style={{background: 'rgba(0,0,0,0.55)', padding: '0 18px', borderRadius: 12, boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone'}}>{l}</span>
 				</div>
 			))}
 		</div>
@@ -160,7 +160,7 @@ const EndCard: React.FC<{dur: number}> = ({dur}) => {
 			<div style={{position: 'absolute', top: 820, left: 80, right: 150, direction: 'rtl', textAlign: 'center', fontFamily: FONT, color: '#fff'}}>
 				<div style={{fontSize: 58, fontWeight: 800, lineHeight: 1.35, opacity: t1}}>
 					<div>قبل ما تخسر أحسن موظفينك…</div>
-					<div>طلّعهم من المكتب</div>
+					<div>طلّعهم من المكتب.</div>
 				</div>
 				<div
 					style={{
@@ -226,7 +226,7 @@ export const Reel: React.FC<{hook: string}> = ({hook}) => {
 			<Sequence from={120} durationInFrames={75}><Caption lines={['عشان حاسس إنه', 'ما حدا شايفه.']} dur={75} /></Sequence>
 			<Sequence from={195} durationInFrames={75}><Caption lines={['لحد ما إجا يوم…']} dur={75} /></Sequence>
 			<Sequence from={270} durationInFrames={60}><Caption lines={['والكل صار ينادي باسمه.']} dur={60} /></Sequence>
-			<Sequence from={330} durationInFrames={48}><Caption lines={['يوم واحد…', 'رجّعله إحساس الفريق.']} dur={48} size={64} /></Sequence>
+			<Sequence from={330} durationInFrames={48}><Caption lines={['يوم واحد…', 'رجّعله روح الفريق.']} dur={48} size={64} /></Sequence>
 			<Sequence from={378} durationInFrames={60}><Caption lines={['وضلّ…', 'بدل ما يروح.']} dur={60} y={300} size={76} /></Sequence>
 		</AbsoluteFill>
 	);
