@@ -217,13 +217,14 @@ export const Reel: React.FC<{hook: string}> = ({hook}) => {
 	const c = (k: keyof typeof SHOTS) => SHOTS[k][0];
 	return (
 		<AbsoluteFill style={{background: '#000', width: W, height: H}}>
-			<S k="hook"><Clip src="pov.mp4" start={POV_TOP} dur={d('hook')} zoom={[1.02, 1.06]} filter={REAL} /><Vignette strength={0.45} /></S>
+			<Sequence from={0} durationInFrames={42}><Clip src="pov.mp4" start={0} dur={42} zoom={[1.02, 1.05]} filter={REAL} /><Vignette strength={0.45} /></Sequence>
+			<Sequence from={42} durationInFrames={24}><Clip src="pov.mp4" start={0.6} rate={0.55} dur={24} zoom={[1.05, 1.08]} shake={3} filter={REAL} /><Vignette strength={0.45} /></Sequence>
 			<S k="screenNight"><ScreenNight dur={d('screenNight')} /><Flash /></S>
 			<S k="office"><Clip src="office_comp.mp4" start={0.2} dur={d('office')} zoom={[1.0, 1.05]} filter="saturate(0.9) contrast(1.05)" /><Vignette /></S>
 			<S k="meeting"><Clip src="meeting.mp4" start={0.4} dur={d('meeting')} zoom={[1.55, 1.6]} origin="22% 42%" filter="saturate(0.9)" /><Vignette strength={0.35} /></S>
-			<S k="edge"><Clip src="real_top_edge.mp4" dur={d('edge')} zoom={[1.9, 2.1]} origin="50% 2%" shake={4} filter={REAL} /><Vignette strength={0.5} /><Flash /></S>
+			<S k="edge"><Clip src="real_top_edge.mp4" dur={d('edge')} zoom={[1.55, 1.7]} origin="50% 2%" shake={4} filter={REAL} /><Vignette strength={0.5} /><Flash /></S>
 			<S k="cheer"><Clip src="cheer.mp4" start={0.3} dur={d('cheer')} zoom={[1.0, 1.04]} filter={REAL} /><Vignette strength={0.4} /></S>
-			<S k="descent"><Clip src="pov.mp4" start={POV_DESC} dur={d('descent')} filter={REAL} /><Vignette strength={0.45} /><Flash /></S>
+			<S k="descent"><Clip src="pov.mp4" start={POV_DESC} dur={d('descent')} zoom={[1.12, 1.4]} origin="50% 30%" shake={4} filter={REAL} /><Vignette strength={0.45} /><Flash /></S>
 			<S k="hug"><Clip src="hug.mp4" start={0.8} dur={d('hug')} zoom={[1.02, 1.07]} filter={REAL} /><Vignette strength={0.4} /></S>
 			<S k="screenMorning"><ScreenMorning dur={d('screenMorning')} /></S>
 			<S k="end"><EndCard dur={d('end')} /></S>
@@ -235,7 +236,7 @@ export const Reel: React.FC<{hook: string}> = ({hook}) => {
 			<Sequence from={c('screenNight')} durationInFrames={42}><Caption lines={['وقبل يومين…', 'كان كاتب استقالته.']} dur={42} y={315} size={70} /></Sequence>
 			<Sequence from={c('office')} durationInFrames={54}><Caption lines={['مش عشان الراتب…']} dur={54} /></Sequence>
 			<Sequence from={c('meeting')} durationInFrames={57}><Caption lines={['عشان حاسس إنه', 'ما حدا شايفه.']} dur={57} /></Sequence>
-			<Sequence from={c('edge')} durationInFrames={39}><Caption lines={['لحد ما وقف هون…']} dur={39} /></Sequence>
+			<Sequence from={c('edge')} durationInFrames={39}><Caption lines={['لحد ما وقف هون…']} dur={39} y={1180} /></Sequence>
 			<Sequence from={c('descent')} durationInFrames={111}><Caption lines={['والفريق كله تحت', 'بينادي باسمه.']} dur={111} /></Sequence>
 			<Sequence from={c('hug')} durationInFrames={39}><Caption lines={['يوم واحد…', 'رجّعله روح الفريق.']} dur={39} size={64} /></Sequence>
 			<Sequence from={c('screenMorning')} durationInFrames={57}><Caption lines={['وضلّ…', 'بدل ما يروح.']} dur={57} y={300} size={76} /></Sequence>
