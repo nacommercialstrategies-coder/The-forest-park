@@ -94,7 +94,7 @@ const ScreenNight: React.FC<{dur: number}> = ({dur}) => {
 				style={{
 					position: 'absolute',
 					left: 1080 - 60 - 1600,
-					top: 570,
+					top: 600,
 					width: 1600,
 					height: 1000,
 					transform: `scale(${1.0 * s}) perspective(2400px) rotateX(4deg) rotateY(-9deg)`,
@@ -126,7 +126,7 @@ const ScreenMorning: React.FC<{dur: number}> = ({dur}) => {
 				style={{
 					position: 'absolute',
 					left: 1080 - 60 - 1600,
-					top: 570,
+					top: 600,
 					width: 1600,
 					height: 1000,
 					transform: `scale(${1.0 * s}) perspective(2400px) rotateX(4deg) rotateY(-9deg)`,
@@ -191,8 +191,8 @@ export const SHOTS = {
 	descent: [270, 300],
 	cheer: [300, 330],
 	hug: [330, 378],
-	screenMorning: [378, 450],
-	end: [450, 537],
+	screenMorning: [378, 438],
+	end: [438, 537],
 } as const;
 
 const S: React.FC<{k: keyof typeof SHOTS; children: React.ReactNode}> = ({k, children}) => (
@@ -221,13 +221,13 @@ export const Reel: React.FC<{hook: string}> = ({hook}) => {
 			{/* fiction disclosure */}
 			<div style={{position: 'absolute', top: 262, left: 70, direction: 'rtl', fontFamily: FONT, fontWeight: 700, fontSize: 26, color: 'rgba(255,255,255,0.78)', background: 'rgba(0,0,0,0.35)', padding: '4px 14px', borderRadius: 8}}>قصة تمثيلية</div>
 			{/* captions */}
-			<Sequence from={0} durationInFrames={75}><Caption lines={HOOKS[hook]} dur={75} y={270} size={62} instant /></Sequence>
+			<Sequence from={0} durationInFrames={75}><Caption lines={HOOKS[hook]} dur={75} y={315} size={62} instant /></Sequence>
 			<Sequence from={75} durationInFrames={45}><Caption lines={['مش عشان الراتب…']} dur={45} /></Sequence>
 			<Sequence from={120} durationInFrames={75}><Caption lines={['عشان حاسس إنه', 'ما حدا شايفه.']} dur={75} /></Sequence>
 			<Sequence from={195} durationInFrames={75}><Caption lines={['لحد ما إجا يوم…']} dur={75} /></Sequence>
 			<Sequence from={270} durationInFrames={60}><Caption lines={['والكل صار ينادي باسمه.']} dur={60} /></Sequence>
 			<Sequence from={330} durationInFrames={48}><Caption lines={['يوم واحد…', 'رجّعله إحساس الفريق.']} dur={48} size={64} /></Sequence>
-			<Sequence from={378} durationInFrames={72}><Caption lines={['وضلّ…', 'بدل ما يروح.']} dur={72} y={300} size={76} /></Sequence>
+			<Sequence from={378} durationInFrames={60}><Caption lines={['وضلّ…', 'بدل ما يروح.']} dur={60} y={300} size={76} /></Sequence>
 		</AbsoluteFill>
 	);
 };
