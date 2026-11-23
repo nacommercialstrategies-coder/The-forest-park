@@ -4,12 +4,12 @@ import {Cursor, EmailUI} from './EmailUI';
 import {FONT, loadFonts} from './fonts';
 
 export const FPS = 30;
-export const DURATION = 537; // 17.9 s
+export const DURATION = 540; // 18.0 s
 
 export const HOOKS: Record<string, string[]> = {
-	A: ['في موظف بشركتك…', 'كاتب استقالته', 'وما بعتها لسا.'],
-	B: ['أحسن موظف عندك…', 'ممكن يكون هسّا', 'بكتب استقالته.'],
-	C: ['الاستقالة…', 'ما بتيجي', 'فجأة.'],
+	A: ['60 متر…', 'وواقف على الحافة.'],
+	B: ['أحسن موظف بالشركة…', 'واقف على حافة 60 متر.'],
+	C: ['شو اللي بيوصّل موظف…', 'لحافة 60 متر؟'],
 };
 
 const W = 1080;
@@ -50,7 +50,7 @@ const Caption: React.FC<{lines: string[]; dur: number; y?: number; size?: number
 };
 
 // ---------- footage ----------
-const Clip: React.FC<{origin?: string; rate?: number; src: string; start?: number; filter?: string; zoom?: [number, number]; dur: number; objectPosition?: string}> = ({
+const Clip: React.FC<{shake?: number; origin?: string; rate?: number; src: string; start?: number; filter?: string; zoom?: [number, number]; dur: number; objectPosition?: string}> = ({
 	src,
 	start = 0,
 	filter,
@@ -59,6 +59,7 @@ const Clip: React.FC<{origin?: string; rate?: number; src: string; start?: numbe
 	objectPosition = 'center',
 	rate = 1,
 	origin,
+	shake = 0,
 }) => {
 	const f = useCurrentFrame();
 	const s = interpolate(f, [0, dur], zoom);
@@ -69,7 +70,7 @@ const Clip: React.FC<{origin?: string; rate?: number; src: string; start?: numbe
 				startFrom={Math.round(start * FPS)}
 				playbackRate={rate}
 				muted
-				style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition, transform: `scale(${s})`, transformOrigin: origin ?? (objectPosition === 'center' ? 'center' : '50% 8%'), filter}}
+				style={{width: '100%', height: '100%', objectFit: 'cover', objectPosition, transform: `translate(${Math.sin(f * 0.9) * shake + Math.sin(f * 2.3) * shake * 0.4}px, ${Math.cos(f * 1.1) * shake * 0.8}px) scale(${s})`, transformOrigin: origin ?? (objectPosition === 'center' ? 'center' : '50% 8%'), filter}}
 			/>
 		</AbsoluteFill>
 	);
@@ -184,15 +185,16 @@ const EndCard: React.FC<{dur: number}> = ({dur}) => {
 
 // ---------- timeline ----------
 export const SHOTS = {
-	screenNight: [0, 45],
-	office: [45, 120],
-	meeting: [120, 195],
-	edge: [195, 270],
-	descent: [270, 300],
-	cheer: [300, 330],
-	hug: [330, 378],
-	screenMorning: [378, 438],
-	end: [438, 537],
+	hook: [0, 66],          // GoPro POV at the edge of the 60 m wooden tower
+	screenNight: [66, 108], // flashback: the unsent resignation
+	office: [108, 162],
+	meeting: [162, 219],
+	edge: [219, 258],       // REAL: back on the tower, he steps back over the edge
+	descent: [258, 309],    // GoPro POV: the rappel down
+	cheer: [309, 369],      // team at the base of the wooden tower
+	hug: [369, 408],
+	screenMorning: [408, 465],
+	end: [465, 540],
 } as const;
 
 const S: React.FC<{k: keyof typeof SHOTS; children: React.ReactNode}> = ({k, children}) => (
@@ -201,33 +203,42 @@ const S: React.FC<{k: keyof typeof SHOTS; children: React.ReactNode}> = ({k, chi
 	</Sequence>
 );
 const d = (k: keyof typeof SHOTS) => SHOTS[k][1] - SHOTS[k][0];
+export const POV_TOP = 0;
+export const POV_DESC = 4.4;
+const REAL = 'saturate(1.12) contrast(1.08) sepia(0.12) brightness(1.0)';
 
-const WARM_REAL = 'saturate(1.08) contrast(1.06) sepia(0.22) brightness(0.98) hue-rotate(-6deg)';
+const Flash: React.FC = () => {
+	const f = useCurrentFrame();
+	return <AbsoluteFill style={{background: '#fff', opacity: interpolate(f, [0, 4], [0.85, 0], {extrapolateRight: 'clamp'})}} />;
+};
 
 export const Reel: React.FC<{hook: string}> = ({hook}) => {
 	loadFonts();
+	const c = (k: keyof typeof SHOTS) => SHOTS[k][0];
 	return (
 		<AbsoluteFill style={{background: '#000', width: W, height: H}}>
-			<S k="screenNight"><ScreenNight dur={d('screenNight')} /></S>
-			<S k="office"><Clip src="office_comp.mp4" start={0.2} dur={d('office')} zoom={[1.0, 1.04]} filter="saturate(0.9) contrast(1.05)" /><Vignette /></S>
+			<S k="hook"><Clip src="pov.mp4" start={POV_TOP} dur={d('hook')} zoom={[1.02, 1.06]} filter={REAL} /><Vignette strength={0.45} /></S>
+			<S k="screenNight"><ScreenNight dur={d('screenNight')} /><Flash /></S>
+			<S k="office"><Clip src="office_comp.mp4" start={0.2} dur={d('office')} zoom={[1.0, 1.05]} filter="saturate(0.9) contrast(1.05)" /><Vignette /></S>
 			<S k="meeting"><Clip src="meeting.mp4" start={0.4} dur={d('meeting')} zoom={[1.55, 1.6]} origin="22% 42%" filter="saturate(0.9)" /><Vignette strength={0.35} /></S>
-			<S k="edge"><Clip src="edge.mp4" start={0.3} dur={d('edge')} zoom={[1.72, 1.8]} objectPosition="50% 0%" filter="saturate(1.02) contrast(1.04)" /><Vignette strength={0.4} /></S>
-			<S k="descent"><Clip src="descent.mp4" start={0.1} dur={d('descent')} zoom={[1.0, 1.05]} filter="brightness(0.78) contrast(1.15)" /><Vignette strength={0.4} /></S>
-			<S k="cheer"><Clip src="cheer.mp4" start={1.7} dur={d('cheer')} zoom={[1.0, 1.04]} /><Vignette strength={0.4} /></S>
-			<S k="hug"><Clip src="hug.mp4" start={1.0} dur={d('hug')} zoom={[1.02, 1.07]} /><Vignette strength={0.4} /></S>
+			<S k="edge"><Clip src="real_top_edge.mp4" dur={d('edge')} zoom={[1.9, 2.1]} origin="50% 2%" shake={4} filter={REAL} /><Vignette strength={0.5} /><Flash /></S>
+			<S k="cheer"><Clip src="cheer.mp4" start={0.3} dur={d('cheer')} zoom={[1.0, 1.04]} filter={REAL} /><Vignette strength={0.4} /></S>
+			<S k="descent"><Clip src="pov.mp4" start={POV_DESC} dur={d('descent')} filter={REAL} /><Vignette strength={0.45} /><Flash /></S>
+			<S k="hug"><Clip src="hug.mp4" start={0.8} dur={d('hug')} zoom={[1.02, 1.07]} filter={REAL} /><Vignette strength={0.4} /></S>
 			<S k="screenMorning"><ScreenMorning dur={d('screenMorning')} /></S>
 			<S k="end"><EndCard dur={d('end')} /></S>
 
 			{/* fiction disclosure */}
 			<div style={{position: 'absolute', top: 262, left: 70, direction: 'rtl', fontFamily: FONT, fontWeight: 700, fontSize: 26, color: 'rgba(255,255,255,0.78)', background: 'rgba(0,0,0,0.35)', padding: '4px 14px', borderRadius: 8}}>قصة تمثيلية</div>
 			{/* captions */}
-			<Sequence from={0} durationInFrames={75}><Caption lines={HOOKS[hook]} dur={75} y={315} size={62} instant /></Sequence>
-			<Sequence from={75} durationInFrames={45}><Caption lines={['مش عشان الراتب…']} dur={45} /></Sequence>
-			<Sequence from={120} durationInFrames={75}><Caption lines={['عشان حاسس إنه', 'ما حدا شايفه.']} dur={75} /></Sequence>
-			<Sequence from={195} durationInFrames={75}><Caption lines={['لحد ما إجا يوم…']} dur={75} /></Sequence>
-			<Sequence from={270} durationInFrames={60}><Caption lines={['والكل صار ينادي باسمه.']} dur={60} /></Sequence>
-			<Sequence from={330} durationInFrames={48}><Caption lines={['يوم واحد…', 'رجّعله روح الفريق.']} dur={48} size={64} /></Sequence>
-			<Sequence from={378} durationInFrames={60}><Caption lines={['وضلّ…', 'بدل ما يروح.']} dur={60} y={300} size={76} /></Sequence>
+			<Sequence from={0} durationInFrames={66}><Caption lines={HOOKS[hook]} dur={66} y={315} size={76} instant /></Sequence>
+			<Sequence from={c('screenNight')} durationInFrames={42}><Caption lines={['وقبل يومين…', 'كان كاتب استقالته.']} dur={42} y={315} size={70} /></Sequence>
+			<Sequence from={c('office')} durationInFrames={54}><Caption lines={['مش عشان الراتب…']} dur={54} /></Sequence>
+			<Sequence from={c('meeting')} durationInFrames={57}><Caption lines={['عشان حاسس إنه', 'ما حدا شايفه.']} dur={57} /></Sequence>
+			<Sequence from={c('edge')} durationInFrames={39}><Caption lines={['لحد ما وقف هون…']} dur={39} /></Sequence>
+			<Sequence from={c('descent')} durationInFrames={111}><Caption lines={['والفريق كله تحت', 'بينادي باسمه.']} dur={111} /></Sequence>
+			<Sequence from={c('hug')} durationInFrames={39}><Caption lines={['يوم واحد…', 'رجّعله روح الفريق.']} dur={39} size={64} /></Sequence>
+			<Sequence from={c('screenMorning')} durationInFrames={57}><Caption lines={['وضلّ…', 'بدل ما يروح.']} dur={57} y={300} size={76} /></Sequence>
 		</AbsoluteFill>
 	);
 };
