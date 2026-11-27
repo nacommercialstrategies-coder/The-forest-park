@@ -26,6 +26,13 @@
 | **التمويل والأعمال** | Gmail، Google Calendar، Google Drive | `small-business:cash-flow-snapshot`، `growth-pulse`، `grant-rfp-writer`، `proposal-builder`، `anthropic-skills:xlsx` |
 | **الأفكار الإبداعية** | — | `social-media-skills:idea-generation-and-ideation`، `trend-jacking`، `viral-reverse-engineering`، `viralswipefile:*`، `marketing-ideas:idea-ranking` |
 
+## مهارات المشروع المحمّلة من GitHub (`.claude/skills/`، المصادر في `SOURCES.md`)
+- **`higgsfield-*` (35 مهارة)**: برومتات سينمائية، كاميرا، تمثيل وتعابير وجه، شخصيات Soul ID، Seedance 2.0/2.5، Kling Motion Control، Marketing Studio، موشن، صوت. ابدأ بـ `higgsfield-prompt` أو `higgsfield-pipeline`.
+- **`seedance-*` (15 مهارة)**: قوالب حسب النوع (سينمائي، إعلان منتج، هوك سوشيال، قصة علامة، أكل ومشروبات، عقارات...) مع إطار هوك الثانيتين.
+- **`film-*` (7 مهارات)**: خط إنتاج الأفلام من السكربت إلى برومتات لقطات جاهزة، لوحة مراجع، جواز الأصول، اختبار الضغط.
+- **`hf-motion-design`**: موشن ديزاين بأسلوب أفلام مرجعية.
+هذه البرومتات تعمل أيضاً مع Kling وOpenArt وCreative Claw، لأن موصل Higgsfield هنا لا يولّد.
+
 ## مبادئ السلوك النفسي في كل إعلان
 هوك بصري في أول ثانيتين • فجوة فضول • دليل اجتماعي حقيقي • ندرة/استعجال صادق فقط • تحويل الخوف إلى إنجاز («أنا عملتها») • دعوة واحدة واضحة للفعل. ممنوع الادعاءات الكاذبة أو الضغط المضلل.
 
