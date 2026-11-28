@@ -31,6 +31,7 @@
 - **`seedance-*` (15 مهارة)**: قوالب حسب النوع (سينمائي، إعلان منتج، هوك سوشيال، قصة علامة، أكل ومشروبات، عقارات...) مع إطار هوك الثانيتين.
 - **`film-*` (7 مهارات)**: خط إنتاج الأفلام من السكربت إلى برومتات لقطات جاهزة، لوحة مراجع، جواز الأصول، اختبار الضغط.
 - **`hf-motion-design`**: موشن ديزاين بأسلوب أفلام مرجعية.
+- **مهارات Higgsfield الرسمية (9)**: `higgsfield-generate`، `-websites`، `-brandkit`، `-product-photoshoot`، `-soul-id`، `-faceless-video`، `-youtube-thumbnail`، `-marketplace-cards`، `-video-explainer`. تحتاج Higgsfield CLI (`npm i -g @higgsfield/cli`) وتسجيل دخول بالمتصفح على جهاز المستخدم، ورصيداً.
 هذه البرومتات تعمل أيضاً مع Kling وOpenArt وCreative Claw، لأن موصل Higgsfield هنا لا يولّد.
 
 ## مبادئ السلوك النفسي في كل إعلان
@@ -39,4 +40,5 @@
 ## حالة الحسابات المعروفة (تحقق منها مجدداً في كل جلسة، لا تفترض)
 - OpenArt: الرصيد الرئيسي للتوليد (آخر رصيد مسجّل ~19,252).
 - Higgsfield: خطة مجانية، 10 رصيد، لا توجد توليدات محفوظة (فُحص في 27/11/2026).
-- خوادم فشلت سابقاً بسبب شبكة البيئة: Runway، Instagram، Ahrefs، Klaviyo، Amplitude، Similarweb وغيرها — أعد المحاولة وأبلغ المستخدم بالنتيجة.
+- شبكة البيئة: فُتحت (28/11/2026) مضيفات Runway، animatedwebs، HyperFX، Ahrefs، Klaviyo، Similarweb، Amplitude، Posty، Agency، ViralSwipeFile، GSC Wizard، So-Me Studio، Higgsfield. هذه الخوادم تحتاج تسجيل دخول (OAuth) من المستخدم لتعمل.
+- Instagram: فشل الاتصال (ليس بسبب الشبكة) — أعد المحاولة.
